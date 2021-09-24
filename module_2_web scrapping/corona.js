@@ -9,7 +9,10 @@ request('https://www.worldometers.info/coronavirus/', function (error, response,
 if(error){
         console.log(error);
 }else{
-    handlepage(html);
+    let a = handlepage(html);
+    console.log(a);
+    console.log(response);
+    console.log(a);
 }
 
 });
@@ -18,8 +21,10 @@ if(error){
 function handlepage(html){
     let seltool = cheerio.load(html);
     let cases = seltool('#maincounter-wrap > div > span');
-    for(let i=0;i<cases.length;i++){
-            let data = seltool(cases[i]).text();
-            console.log("data",data);
-    }
+    // for(let i=0;i<cases.length;i++){
+    //         let data = seltool(cases[i]).text();
+    //         console.log("data",data);
+    // }
+    return seltool(cases[0]).text();
+    
 }
